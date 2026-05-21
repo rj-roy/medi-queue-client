@@ -1,7 +1,10 @@
+'use client'
+import BookedTutors from "@/app/components/BookedTutors";
+
 const MyBookedTutors = () => {
     return (
         <div>
-            <h1 className="text-5xl text-secondary">My Booked Tutors</h1>
+            <BookedTutors/>
         </div>
     );
 };

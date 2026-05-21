@@ -11,10 +11,10 @@ export const metadata = {
 
 const DetailsCard = async ({ slug }) => {
     const tutor = await getTutorBySlug(slug)
-    // console.log(tutor);
-    // const getBooking = await getBookings();
-    // console.log(getBooking);
+    const allBookings = await getBookings();
 
+    const bookedTimeSlot = allBookings.filter((booking)=>Object.values(tutor.timeSlot).includes(booking.selectedSlot));
+    
     if (!tutor) {
         return <div>Tutor not found</div>;
     }
@@ -141,6 +141,7 @@ const DetailsCard = async ({ slug }) => {
                         <TimeSlotSelector
                             hourlyFee={hourlyFee}
                             timeSlot={timeSlot}
+                            bookedTimeSlot={bookedTimeSlot}
                             institutionExperience={institutionExperience}
                             tutorName={tutorName}
                             bookingSubmiteAction={bookingSubmiteAction}
