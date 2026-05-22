@@ -4,11 +4,7 @@ import { getAllTuros } from "@/lib/getData";
 import { Suspense } from "react";
 
 const TutorDetails = async ({ params }) => {
-
     let { slug } = await params;
-    // console.log(slug);
-    // const id = await getAllTuros();
-    // console.log(id._id);
 
     return (
         <div className="w-full max-w-5xl mx-auto">

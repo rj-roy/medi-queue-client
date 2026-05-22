@@ -1,5 +1,4 @@
 'use client';
-
 import { authClient } from '@/lib/auth-client';
 import { getBookings } from '@/lib/getData';
 import { useRouter } from 'next/navigation';
