@@ -2,6 +2,7 @@ import { User } from "lucide-react";
 import { DeleteAlertDialog } from "../DeleteAlertDialogue";
 import { Suspense } from "react";
 import BookedSessionLoader from "./BookedSessionLoader";
+import { deleteBooking } from "@/lib/actions";
 
 const BookedSessionCard = ({ allBookings }) => {
 
@@ -45,7 +46,7 @@ const BookedSessionCard = ({ allBookings }) => {
                                 </span>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right">
-                                <DeleteAlertDialog />
+                                <DeleteAlertDialog booking={booking} deleteBooking={deleteBooking}/>
                             </td>
                         </tr>
                     </Suspense>

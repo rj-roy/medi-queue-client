@@ -26,9 +26,20 @@ export const addTutorAction = async (tutorData) => {
         body: JSON.stringify(tutorData),
     });
     const data = await res.json();
-    console.log(data);
-    if(data.insertedId){
+    if (data.insertedId) {
         revalidatePath('/tutors')
+    };
+    return data;
+};
+
+export const deleteBooking = async (bookedId) => {
+    "use server"
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/del/${bookedId}`,{
+        method: 'DELETE',
+    });
+    const data = await res.json();
+    if(data.deletedCount<0){
+        revalidatePath('/my-booked-tutors');
     };
     return data;
 };
