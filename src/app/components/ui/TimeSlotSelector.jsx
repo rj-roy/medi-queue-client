@@ -10,6 +10,7 @@ const TimeSlotSelector = ({
     timeSlot = [],
     institutionExperience,
     tutorName,
+    location,
     bookingSubmiteAction,
     bookedTimeSlot = []
 }) => {
@@ -78,13 +79,19 @@ const TimeSlotSelector = ({
 
         const whoBooked = session?.data?.user;
         const bookedAt = new Date();
+        const formattedDate = new Intl.DateTimeFormat('en-bd', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+        }).format(bookedAt);
 
         const bookingData = {
-            bookedAt,
+            bookedAt: formattedDate,
             hourlyFee,
             selectedSlot,
             institutionExperience,
             tutorName,
+            location,
             whoBooked
         };
 

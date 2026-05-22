@@ -3,6 +3,7 @@ import { handleRemove } from "../hooks/nj";
 import { User } from "lucide-react";
 
 const BookedSessionCard = ({ allBookings }) => {
+    console.log(allBookings);
     if (!allBookings || allBookings.length === 0) {
         return (
             <tr>
@@ -25,12 +26,16 @@ const BookedSessionCard = ({ allBookings }) => {
                                         <User />
                                     </span>
                                 </div>
-                                <span className="font-medium text-gray-900">session.tutor</span>
+                                <span className="font-medium text-gray-900">{booking.tutorName}</span>
                             </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-gray-700 font-medium">session.price</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-gray-600">session.location</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-gray-600">session.datetime</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-700 font-medium">৳{booking.hourlyFee}/hour</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-600">{booking.location}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-600">
+                            <span>{booking.bookedAt}</span>
+                            <br/>
+                            <span>{booking.selectedSlot}</span>
+                        </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border bg-amber-50 text-amber-700 border-amber-200`}>
                                 Pending

@@ -1,8 +1,10 @@
 import BookedSessionCard from '@/app/components/ui/BookedSessionCard';
+import CardSkeleton from '@/app/components/ui/CardSkeleton';
 import { auth } from '@/lib/auth';
 import { getBookings } from '@/lib/getData';
 import { headers } from 'next/headers';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 export default async function BookedSessions() {
     const allBookings = await getBookings();
@@ -13,7 +15,7 @@ export default async function BookedSessions() {
     const bookedByUser = allBookings?.filter(b => b?.whoBooked?.id === userId) || [];
 
     return (
-        <div className="min-h-screen bg-gray-50 p-6 md:p-8 font-sans">
+        <div className="bg-gray-50 p-6 md:p-8 font-sans mb-5">
             <div className="max-w-7xl mx-auto space-y-8">
                 <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
                     <div className="flex-1">
@@ -47,8 +49,8 @@ export default async function BookedSessions() {
                     <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
                         <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Total Bookings</p>
                         <div className="flex items-baseline gap-2">
-                            <span className="text-3xl font-bold text-gray-900">24</span>
-                            <span className="text-sm text-red-600 font-medium">+2 this week</span>
+                            <span className="text-3xl font-bold text-gray-900">{allBookings?.length}</span>
+                            <span className="text-sm text-red-600 font-medium">+7 this week</span>
                         </div>
                     </div>
                     <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
@@ -79,6 +81,8 @@ export default async function BookedSessions() {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200">
+                                {/* <Suspense fallback={<p>Loading...</p>}>
+                                </Suspense> */}
                                 <BookedSessionCard allBookings={bookedByUser} />
                             </tbody>
                         </table>
@@ -86,7 +90,7 @@ export default async function BookedSessions() {
 
                     <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between bg-gray-50">
                         <p className="text-sm text-gray-600">
-                            Showing <span className="font-medium text-gray-900">sessions.length</span> of <span className="font-medium text-gray-900">sessions.length</span> upcoming sessions
+                            Showing <span className="font-medium text-gray-900">{bookedByUser.length}</span> of <span className="font-medium text-gray-900">{allBookings.length}</span> upcoming sessions
                         </p>
                         <div className="flex gap-2">
                             <button className="px-3 py-1.5 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
