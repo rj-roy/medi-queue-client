@@ -28,7 +28,7 @@ const DetailsCard = async ({ slug }) => {
     const isValidImage = photo && photo.startsWith("http") && isImageByExtension(photo);
 
     return (
-        <div className="bg-gray-50 p-4 sm:p-8 flex items-center justify-center">
+        <div className="bg-gray-50 p-4 sm:p-8 flex items-center justify-center mt-10">
             <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-2 space-y-6">
                     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">

@@ -30,19 +30,20 @@ export default function FeaturedTutors({ tutors }) {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {featuredTutors.map((tutor) => (
-                        <div
+                    {featuredTutors?.map((tutor) => (
+                        <Link
+                        href={`/tutors/${tutor._id}`}
                             key={tutor._id || tutor.id}
                             className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300"
                         >
-                            <div className="relative h-64 overflow-hidden bg-gradient-to-br from-teal-600 to-teal-800">
+                            <div className="relative h-64 overflow-hidden bg-linear-to-br from-teal-600 to-teal-800">
                                 <Image
                                     src={tutor.photo || 'https://randomuser.me/api/portraits/men/1.jpg'}
                                     alt={tutor.tutorName}
                                     fill
                                     className="object-cover opacity-90 group-hover:scale-105 transition-transform duration-300"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
 
                                 <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 shadow-lg">
                                     <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
@@ -92,7 +93,7 @@ export default function FeaturedTutors({ tutors }) {
                                     Book Session
                                 </button>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
 
