@@ -9,7 +9,6 @@ export const metadata = {
 
 const Tutors = async () => {
     const tutors = await getAllTuros();
-    console.log(tutors);
     return (
         <div className="min-h-screen bg-[#f8f8f6] px-4 py-6">
             <div className="mx-auto max-w-312.5 rounded-2xl border border-gray-200 bg-white shadow-sm">
