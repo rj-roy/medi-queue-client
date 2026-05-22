@@ -40,7 +40,9 @@ export default function FeaturedTutors({ tutors }) {
                                 <Image
                                     src={tutor.photo || 'https://randomuser.me/api/portraits/men/1.jpg'}
                                     alt={tutor.tutorName}
-                                    fill
+                                    height={500}
+                                    width={500}
+                                    loading='eager'
                                     className="object-cover opacity-90 group-hover:scale-105 transition-transform duration-300"
                                 />
                                 <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />

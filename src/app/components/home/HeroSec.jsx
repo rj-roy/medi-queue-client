@@ -53,6 +53,7 @@ export default function HeroSec() {
                             <Image
                                 height={500}
                                 width={500}
+                                loading='eager'
                                 src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop"
                                 alt="Medical professionals reviewing scans"
                                 className="w-full h-auto object-cover"

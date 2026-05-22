@@ -14,10 +14,8 @@ export default function SuccessStories() {
                     </h2>
                 </div>
 
-                {/* Grid Layout */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-                    {/* Large Testimonial Card - Left */}
                     <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-200 p-8 lg:p-10">
                         <Quote className="w-10 h-10 text-[#8B3A3A] mb-6" />
 
@@ -33,6 +31,7 @@ export default function SuccessStories() {
                                     alt="Maya Rodriguez"
                                     width={48}
                                     height={48}
+                                    loading='eager'
                                     className="object-cover"
                                 />
                             </div>
@@ -62,10 +61,12 @@ export default function SuccessStories() {
                                 <Image
                                     src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=300&fit=crop"
                                     alt="David Kim studying"
-                                    fill
+                                    height={500}
+                                    width={500}
+                                    loading='eager'
                                     className="object-cover opacity-60"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
                             </div>
 
                             <div className="relative p-6 lg:p-7">

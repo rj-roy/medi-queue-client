@@ -6,6 +6,12 @@ import { headers } from 'next/headers';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
+export const metadata = {
+    title: 'Medi Vibe Tutors | Booked Tutors',
+    description: 'Confige Your Information Here',
+};
+
+
 export default async function BookedSessions() {
     const allBookings = await getBookings();
     const session = await auth.api.getSession({

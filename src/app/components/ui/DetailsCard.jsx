@@ -13,13 +13,14 @@ const DetailsCard = async ({ slug }) => {
     const tutor = await getTutorBySlug(slug)
     const allBookings = await getBookings();
 
-    const bookedTimeSlot = allBookings.filter((booking) => Object.values(tutor.timeSlot).includes(booking.selectedSlot));
+    const bookedTimeSlot = allBookings.filter((booking) => Object.values(tutor?.timeSlot).includes(booking.selectedSlot));
 
     if (!tutor) {
         return <div>Tutor not found</div>;
     }
 
     const { tutorName, photo, institutionExperience, hourlyFee, rating = 4.9, totalStudents = '1.2k+', totalSessions = '850', bio, description, expertise, competencies, timeSlot, location = [] } = tutor;
+    
     const isImageByExtension = (url) => {
         if (!url) return false;
 

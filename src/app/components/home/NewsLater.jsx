@@ -31,7 +31,7 @@ export default function NewsletterS() {
                         </div>
 
                         {/* Right Content - Form */}
-                        <div className="flex-shrink-0 w-full lg:w-auto">
+                        <div className="shrink-0 w-full lg:w-auto">
                             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
                                 <input
                                     type="email"
