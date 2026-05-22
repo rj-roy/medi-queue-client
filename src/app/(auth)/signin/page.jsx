@@ -1,5 +1,5 @@
 "use client";
-import { authClient } from "@/lib/auth-client";
+// import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import { Loader } from "lucide-react";
 import Image from "next/image";
@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import googleIc from "@/assets/google-ico.png"
+import { authClient } from "@/lib/auth-client";
 
 const LoginPage = () => {
     const [isLoading, setIsLoading] = useState(false);

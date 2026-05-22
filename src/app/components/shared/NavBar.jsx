@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "../ui/Themetoggle";
 import { authClient } from "@/lib/auth-client";
-import { CircleUser, User } from "lucide-react";
+import { CircleUser, LogOut, User } from "lucide-react";
 
 const NavBar = ({ bookingData }) => {
     const pathname = usePathname();
@@ -58,7 +58,10 @@ const NavBar = ({ bookingData }) => {
                         <div className="lg:flex hidden justify-center items-center gap-2">
 
                             <p>Wecome, {session.user.name} </p>
-                            <CircleUser size={30} />
+                            <CircleUser
+                                onClick={() => setIsMobileMenuOpen(true)}
+                                size={30} className="hover:text-secondary" />
+
                         </div>
                         <div onClick={async () => await authClient.signOut()} className="lg:hidden w-30 mx-auto text-center border rounded-full border-gray-600 hover:border-none">
                             <Link href="/signin" className="no-underline hover:bg-acent transition-all duration-300 block rounded-full p-1.5 px-5 hover:text-white">
@@ -108,6 +111,9 @@ const NavBar = ({ bookingData }) => {
                         <>
                             {renderedAuth}
                             <ThemeToggle />
+                            <div>
+                                <LogOut onClick={async () => await authClient.signOut()} className="hover:text-secondary" />
+                            </div>
                         </>
                 }
 
@@ -137,7 +143,7 @@ const NavBar = ({ bookingData }) => {
                 onClick={closeMobileMenu}
             />
 
-            <div className={`fixed top-0 right-0 h-full w-72 bg-white text-black  z-50 transform transition-transform duration-300 ease-in-out lg:hidden shadow-xl ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className={`fixed top-0 right-0 h-full w-72 bg-white text-black  z-50 transform transition-transform duration-300 ease-in-out shadow-xl ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="flex justify-end p-4">
                     <button
                         onClick={closeMobileMenu}
