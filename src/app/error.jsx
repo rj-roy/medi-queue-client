@@ -3,9 +3,9 @@ import { BriefcaseMedical, RefreshCw, ArrowLeft, Info } from 'lucide-react';
 
 export default function Error() {
     return (
-        <div className="bg-gray-100 flex flex-col items-center justify-center px-4 py-12">
+        <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center px-4 py-12">
             <div className="max-w-md w-full flex flex-col items-center text-center">
-                <div className="mb-6">
+                <div className="mb-6 animate-bounce">
                     <BriefcaseMedical className="w-20 h-20 text-secondary" />
                 </div>
                 <h1 className="text-2xl font-bold text-gray-900 mb-3">
