@@ -3,9 +3,10 @@ import { Suspense } from "react";
 import BookedSessionLoader from "./BookedSessionLoader";
 import Image from "next/image";
 import { DeleteAlertDialog } from "../DeleteAlertDialogue";
+import EditUserDialogue from "../EditUserDialogue";
+import Link from "next/link";
 
-const MyTutorsCard = ({ tutors, userId, deleteTutors }) => {
-    const filtered = tutors?.filter(tutor => tutor?.submittedUser?.id === userId);
+const MyTutorsCard = ({ tutors, userId, deleteTutors, filtered }) => {
     const url = "/my-tutors"
 
     const isImageByExtension = (url) => {
@@ -19,7 +20,7 @@ const MyTutorsCard = ({ tutors, userId, deleteTutors }) => {
                 tutor?.photo &&
                 tutor?.photo?.startsWith("http") &&
                 isImageByExtension(tutor?.photo);
-                const id = tutor?._id
+            const id = tutor?._id
 
             return (
                 <Suspense key={index} fallback={<BookedSessionLoader />}>
@@ -68,16 +69,14 @@ const MyTutorsCard = ({ tutors, userId, deleteTutors }) => {
                                 Pending
                             </span>
                         </td>
-                        <td className="px-6 py-4 text-right">
-                            <div className="flex items-center justify-end gap-2">
-                                <button className="p-1.5 hover:bg-gray-100 rounded transition-colors">
+                        <td className="px-6 py-4 text-right flex items-center justify-end gap-2">
+                            <div>
+                                <Link href={`/my-tutors/edit/${id}`} className="p-1.5 hover:bg-gray-100 rounded transition-colors">
                                     <Pencil className="w-4 h-4 text-gray-500" />
-                                </button>
-                                <button className="p-1.5 hover:bg-red-50 rounded transition-colors">
-                                    {/* <Trash2 className="w-4 h-4 text-gray-500 hover:text-red-600" /> */}
-                                </button>
+                                </Link>
                             </div>
-                                    <DeleteAlertDialog id={id} whereToDelete={deleteTutors} url={url}/>
+                            {/* <EditUserDialogue/> */}
+                            <DeleteAlertDialog id={id} whereToDelete={deleteTutors} url={url} />
                         </td>
                     </tr>
                 </Suspense>

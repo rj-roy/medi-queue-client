@@ -1,5 +1,5 @@
 'use client';
-import { BellRing } from 'lucide-react';
+import { BellRing, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -17,9 +17,9 @@ export function DeleteAlertDialog({id, whereToDelete, url}) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 rounded-lg bg-secondary text-white font-medium hover:bg-opacity-90 transition-colors"
+        className="px-4 py-2 rounded-lg bg-secondary text-white font-medium hover:bg-opacity-90 transition-colors cursor-pointer"
       >
-        Delete
+        <Trash2 className="w-4 h-4 text-white bg-secondary/50 hover:bg-secondary" />
       </button>
 
       {isOpen && (

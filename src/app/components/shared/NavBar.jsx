@@ -21,20 +21,13 @@ const NavBar = ({ bookingData }) => {
             { name: "Home", href: "/" },
             { name: "Tutors", href: "/tutors" },
         ]
-        : matching
-            ? [
-                { name: "Home", href: "/" },
-                { name: "Tutors", href: "/tutors" },
-                { name: "My Tutors", href: "/my-tutors" },
-                { name: "My Booked Tutors", href: "/my-booked-tutors" },
-            ]
-            : [
-                { name: "Home", href: "/" },
-                { name: "Tutors", href: "/tutors" },
-                { name: "Add Tutor", href: "/add-tutor" },
-                { name: "My Tutors", href: "/my-tutors" },
-                { name: "My Booked Tutors", href: "/my-booked-tutors" },
-            ];
+        : [
+            { name: "Home", href: "/" },
+            { name: "Tutors", href: "/tutors" },
+            { name: "Add Tutor", href: "/add-tutor" },
+            { name: "My Tutors", href: "/my-tutors" },
+            { name: "My Booked Tutors", href: "/my-booked-tutors" },
+        ];
 
     const closeMobileMenu = () => setIsMobileMenuOpen(false);
 

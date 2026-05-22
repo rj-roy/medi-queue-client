@@ -6,12 +6,14 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { deleteTutors } from '@/lib/actions';
 
-export default async function TutorsManagement({allTutors}) {
+export default async function TutorsManagement({ allTutors }) {
     const allBookings = await getBookings();
     const session = await auth.api.getSession({
         headers: await headers(),
     });
     const userId = session.user.id;
+    const filtered = allTutors?.filter(tutor => tutor?.submittedUser?.id === userId);
+
     return (
         <div className="bg-gray-50 p-6 md:p-8 mb-20">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
@@ -110,14 +112,14 @@ export default async function TutorsManagement({allTutors}) {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
-                            <MyTutorsCard tutors={allTutors} userId={userId} deleteTutors={deleteTutors}/>
+                            <MyTutorsCard tutors={allTutors} userId={userId} deleteTutors={deleteTutors} filtered={filtered}/>
                         </tbody>
                     </table>
                 </div>
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-6 py-4 border-t border-gray-200">
                     <p className="text-sm text-gray-500 mb-4 sm:mb-0">
-                        Showing users.profile.length of <span>{allTutors.length}</span> tutors
+                        Showing <span>{filtered.length}</span> of <span>{allTutors.length}</span> tutors
                     </p>
                     <div className="flex items-center gap-2">
                         <button className="px-3 py-1.5 border border-gray-300 rounded text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1">

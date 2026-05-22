@@ -34,25 +34,45 @@ export const addTutorAction = async (tutorData) => {
 
 export const deleteBooking = async (bookedId) => {
     "use server"
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/del/${bookedId}`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/del/${bookedId}`, {
         method: 'DELETE',
     });
     const data = await res.json();
-    if(data.deletedCount<0){
+    if (data.deletedCount < 0) {
         revalidatePath('/my-booked-tutors');
     };
     return data;
 };
 
-export const deleteTutors = async (userId) =>{
+export const deleteTutors = async (userId) => {
     "use server"
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/del/tutors/${userId}`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/del/tutors/${userId}`, {
         method: 'DELETE',
     });
     const data = await res.json();
     console.log(data);
-    if(data.deletedCount<0){
+    if (data.deletedCount < 0) {
         revalidatePath('/my-tutors');
     };
+    return data;
+};
+
+
+export const updateUserAction = async (userId, formData) => {
+    'use server'
+    const userUpdate = formData;
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${userId}`, {
+        method: 'PATCH',
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(userUpdate),
+    });
+    const data = await res.json();
+    if (data.modifiedCount > 0) {
+        revalidatePath('/my-tutors');
+    }
+    console.log("after-update", data);
     return data;
 };

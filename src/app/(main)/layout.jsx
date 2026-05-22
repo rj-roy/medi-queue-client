@@ -7,7 +7,7 @@ export default async function MainLayout({ children }) {
     return (
         <div className="flex flex-col min-h-screen">
             <NavBar bookingData={bookingData} />
-            <div className="grow">
+            <div className="grow relative">
                 {children}
             </div>
             <FooterC />

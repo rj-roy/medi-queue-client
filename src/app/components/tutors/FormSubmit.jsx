@@ -19,49 +19,30 @@ import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import { getAllTuros } from '@/lib/getData';
 import { toast, ToastContainer } from 'react-toastify';
+import { useTimeSlots } from '@/app/hooks/useTimeSlots';
 
 const FormSubmit = ({ addTutorAction }) => {
-    const { register, handleSubmit, control, watch, setValue, formState: { errors } } = useForm({
-        defaultValues: {
-            tutorName: '',
-            photo: '',
-            subject: '',
-            availableDays: '',
-            timeSlot: {},
-            totalSlot: 1,
-            hourlyFee: '',
-            sessionStartDate: '',
-            institutionExperience: '',
-            location: '',
-            teachingMode: ''
-        }
-    });
+    const { register, handleSubmit, control, watch, setValue, formState: { errors } } = useForm(
+        {defaultValues: {
+                tutorName: '',
+                photo: '',
+                subject: '',
+                availableDays: '',
+                timeSlot: {},
+                totalSlot: 1,
+                hourlyFee: '',
+                sessionStartDate: '',
+                institutionExperience: '',
+                location: '',
+                teachingMode: ''
+            }});
 
-    const [timeSlots, setTimeSlots] = useState([
-        { id: 1, startTime: '', endTime: '' }
-    ]);
+    const { timeSlots, addTimeSlot, removeTimeSlot, updateTimeSlot, formatTime } = useTimeSlots(setValue);
+
     const watchDays = watch('availableDays');
     const watchMode = watch('teachingMode');
-    const subjects = [
-        'Mathematics',
-        'Physics',
-        'Chemistry',
-        'Biology',
-        'English',
-        'Bangla',
-        'General Science',
-        'Higher Math',
-        'Accounting',
-        'Business Studies',
-        'Economics',
-        'History',
-        'Geography',
-        'ICT',
-        'Religious Studies',
-        'Drawing & Painting',
-        'Music',
-        'Physical Education'
-    ];
+
+    const subjects = ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English', 'Bangla', 'General Science', 'Higher Math', 'Accounting', 'Business Studies', 'Economics', 'History', 'ICT', 'Religious Studies', 'Drawing & Painting', 'Music', 'Physical Education'];
     const teachingModes = ['Online', 'Offline', 'Both'];
     const daysOptions = [
         { label: 'Sat - Thu', value: 'Sat - Thu' },
@@ -72,51 +53,6 @@ const FormSubmit = ({ addTutorAction }) => {
         { label: 'Weekdays Only', value: 'Weekdays Only' },
         { label: 'Custom', value: 'Custom' }
     ];
-
-    const addTimeSlot = () => {
-        const newId = Math.max(...timeSlots.map(s => s.id), 0) + 1;
-        setTimeSlots([...timeSlots, { id: newId, startTime: '', endTime: '' }]);
-        setValue('totalSlot', timeSlots.length + 1);
-    };
-    const removeTimeSlot = (id) => {
-        if (timeSlots.length > 1) {
-            const updated = timeSlots.filter(slot => slot.id !== id);
-            setTimeSlots(updated);
-            setValue('totalSlot', updated.length);
-
-            const newTimeSlotObj = {};
-            updated.forEach((slot, idx) => {
-                const slotKey = `slot_${idx + 1}`;
-                if (slot.startTime && slot.endTime) {
-                    newTimeSlotObj[slotKey] = `${formatTime(slot.startTime)} - ${formatTime(slot.endTime)}`;
-                }
-            });
-            setValue('timeSlot', newTimeSlotObj);
-        }
-    };
-    const updateTimeSlot = (id, field, value) => {
-        const updated = timeSlots.map(slot =>
-            slot.id === id ? { ...slot, [field]: value } : slot
-        );
-        setTimeSlots(updated);
-
-        const timeSlotObj = {};
-        updated.forEach((slot, idx) => {
-            const slotKey = `slot_${idx + 1}`;
-            if (slot.startTime && slot.endTime) {
-                timeSlotObj[slotKey] = `${formatTime(slot.startTime)} - ${formatTime(slot.endTime)}`;
-            }
-        });
-        setValue('timeSlot', timeSlotObj);
-    };
-    const formatTime = (time24) => {
-        if (!time24) return '';
-        const [hours, minutes] = time24.split(':');
-        const h = parseInt(hours);
-        const period = h >= 12 ? 'PM' : 'AM';
-        const h12 = h % 12 || 12;
-        return `${h12}:${minutes} ${period}`;
-    };
 
     const { data: session, error } = authClient.useSession();
     const submittedUser = session?.user;
@@ -140,7 +76,7 @@ const FormSubmit = ({ addTutorAction }) => {
             submittedUser: submittedUser,
         };
 
-        const isAlreadySubmitted = getSubmittedData?.find(b =>b?.submittedUser?.id === submittedUser?.id);
+        const isAlreadySubmitted = getSubmittedData?.find(b => b?.submittedUser?.id === submittedUser?.id);
         if (getSubmittedData) {
             if (isAlreadySubmitted) {
                 toast.error("You Already Submitted, Please wait for the response from stutents...")
