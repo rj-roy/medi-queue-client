@@ -3,15 +3,14 @@ import { BellRing } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export function DeleteAlertDialog({booking, deleteBooking}) {
+export function DeleteAlertDialog({id, whereToDelete, url}) {
   const [isOpen, setIsOpen] = useState(false);
-  const bookedId = booking._id;
   const router = useRouter();
 
   const handleConfirm = async () => {
-    await deleteBooking(bookedId);
+    await whereToDelete(id);
     setIsOpen(false);
-    router.push('/my-booked-tutors');
+    router.push(url);
   };
 
   return (

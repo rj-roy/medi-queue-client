@@ -5,6 +5,7 @@ import BookedSessionLoader from "./BookedSessionLoader";
 import { deleteBooking } from "@/lib/actions";
 
 const BookedSessionCard = ({ allBookings }) => {
+    const url = "/my-booked-tutors"
 
     if (!allBookings || allBookings.length === 0) {
         return (
@@ -18,6 +19,8 @@ const BookedSessionCard = ({ allBookings }) => {
     return (
         <>
             {allBookings.map((booking, i) => {
+                const id = booking._id;
+
                 return (
                     <Suspense key={i} fallback={<BookedSessionLoader />}>
                         <tr className="hover:bg-gray-50 transition-colors">
@@ -46,7 +49,7 @@ const BookedSessionCard = ({ allBookings }) => {
                                 </span>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right">
-                                <DeleteAlertDialog booking={booking} deleteBooking={deleteBooking}/>
+                                <DeleteAlertDialog id={id} whereToDelete={deleteBooking} url={url}/>
                             </td>
                         </tr>
                     </Suspense>

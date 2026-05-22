@@ -43,3 +43,16 @@ export const deleteBooking = async (bookedId) => {
     };
     return data;
 };
+
+export const deleteTutors = async (userId) =>{
+    "use server"
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/del/tutors/${userId}`,{
+        method: 'DELETE',
+    });
+    const data = await res.json();
+    console.log(data);
+    if(data.deletedCount<0){
+        revalidatePath('/my-tutors');
+    };
+    return data;
+};
