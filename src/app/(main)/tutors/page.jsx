@@ -2,6 +2,8 @@ import LeftSec from "@/app/components/tutors/LeftSec";
 import TutorsCard from "@/app/components/ui/TutorsCard";
 import { getAllTuros } from "@/lib/getData";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
     title: 'Medi Vibe Tutors | All Tutors',
     description: 'Find Your Favourite Tutor',

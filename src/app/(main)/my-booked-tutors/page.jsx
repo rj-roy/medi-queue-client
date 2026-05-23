@@ -6,6 +6,8 @@ import { headers } from 'next/headers';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
     title: 'Medi Vibe Tutors | Booked Tutors',
     description: 'Confige Your Information Here',

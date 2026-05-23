@@ -1,6 +1,6 @@
 export const getAllTuros = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors`)
-    const data = res.json();
+    const data = await res.json();
     return data;
 }
 export const getTutorBySlug = async (slug) => {
