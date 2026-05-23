@@ -4,8 +4,6 @@ import { ClipboardList, Search, UserSearch, BookOpen, ShieldCheck, Clock } from 
 import Link from 'next/link';
 import { get } from 'react-hook-form';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata = {
     title: 'Medi Vibe Tutors | My Tutors',
     description: 'Confige Your Information Here',
