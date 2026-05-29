@@ -3,6 +3,7 @@
 A modern, full-stack tutor booking and management platform built with Next.js, React, and MongoDB. Connect with qualified tutors, manage bookings, and streamline the tutoring experience.
 
 **Live Demo:** [https://medi-queue-by-rj.vercel.app/](https://medi-queue-by-rj.vercel.app/)
+**Server Repositiory:** [https://github.com/rj-roy/medi-queue-server](https://github.com/rj-roy/medi-queue-server)
 
 ---
 
